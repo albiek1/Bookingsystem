@@ -15,22 +15,22 @@
     <jsp:body>
 
         <div>
-            <h2>Our Cool Site</h2>
+            <h2>InnoTechSpace Booking site</h2>
 
             <div style="margin-top: 3em;margin-bottom: 3em;">
                 Main page for this 2. semester start project used at cphbusiness.dk
             </div>
 
-            <c:if test="${sessionScope.role == 'employee' }">
+            <c:if test="${sessionScope.role == 'admin' }">
                 <p style="font-size: larger">This is what you can do,
                     since your are logged in as an employee</p>
-                 <p><a href="fc/employeepage">Employee Page</a>
+                 <p><a href="fc/adminpage">Employee Page</a>
              </c:if>
 
-             <c:if test="${sessionScope.role == 'customer' }">
+             <c:if test="${sessionScope.role == 'student' }">
                 <p style="font-size: larger">This is what you can do, since your
                     are logged in as a customer</p>
-                <p><a href="fc/customerpage">Customer Page</a>
+                <p><a href="fc/studentpage">Customer Page</a>
             </c:if>
 
         </div>

@@ -1,11 +1,13 @@
 package web.commands;
 
+import business.exceptions.BookingException;
+import business.exceptions.ItemException;
 import business.exceptions.UserException;
 import business.persistence.Database;
 
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 public abstract class Command
 {
@@ -26,8 +28,18 @@ public abstract class Command
         commands.put("logoutcommand", new LogoutCommand(""));
         commands.put("registerpage", new CommandUnprotectedPage("registerpage"));
         commands.put("registercommand", new RegisterCommand(""));
-        commands.put("customerpage", new CommandProtectedPage("customerpage", "customer"));
-        commands.put("employeepage", new CommandProtectedPage("employeepage", "employee"));
+        commands.put("studentpage", new CommandProtectedPage("studentpage", "student"));
+        commands.put("adminpage", new CommandProtectedPage("adminpage", "admin"));
+        commands.put("bookingPage", new CommandProtectedPage("bookingPage", "student"));
+        commands.put("showAllBookingsCommand", new CommandProtectedPage("showAllBookings", "admin"));
+        commands.put("showAllStudentsPage", new getAllUsersCommand("showAllStudentsPage", "admin"));
+        commands.put("showAllItemsPage", new showAllItemsCommand("showAllItemsPage", "admin"));
+        commands.put("addNewStudentPage", new addNewStudentCommand("addNewStudentPage", "admin"));
+        commands.put("editBookingPageAdm", new editBookingCommandAdm("editBookingPageAdm", "admin"));
+        commands.put("showCurrentBookings", new ShowAllBookingsCommand("showCurrentBookings", "admin"));
+        commands.put("createNewBooking", new CreateNewBookingCommand("createNewBooking", "student"));
+        commands.put("showAllItemsStu", new showAllItemsCommand("showAllItemsStu", "student"));
+        commands.put("viewStudentProfile", new viewProfileStudent("viewStudentProfile", "student"));
     }
 
     public static Command fromPath(
@@ -49,6 +61,6 @@ public abstract class Command
     public abstract String execute(
             HttpServletRequest request,
             HttpServletResponse response)
-            throws UserException;
+            throws UserException, BookingException, ItemException;
 
 }

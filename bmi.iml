@@ -19,7 +19,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="bmi" />
+          <factory-entry name="Bookingsystem" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

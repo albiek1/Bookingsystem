@@ -39,9 +39,9 @@ public class UserMapperTest {
                 stmt.execute("create table " + TESTDATABASE + ".users LIKE " + DATABASE + ".users;" );
                 stmt.execute(
                         "insert into users values " +
-                    "(1,'jens@somewhere.com','jensen','student'), " +
-                    "(2,'ken@somewhere.com','kensen','student'), " +
-                    "(3,'robin@somewhere.com','batman','admin')");
+                    "(1,'Jens', 'jens@somewhere.com','jensen','11111111','student'), " +
+                    "(2,'Ken', 'ken@somewhere.com','kensen','22222222','student'), " +
+                    "(3,'Robin', 'robin@somewhere.com','batman','33333333','admin')");
             } catch (SQLException ex) {
             System.out.println( "Could not open connection to database: " + ex.getMessage() );
         }
@@ -79,7 +79,7 @@ public class UserMapperTest {
     public void testCreateUser01() throws UserException {
         // Can we create a new user - Notice, if login fails, this will fail
         // but so would login01, so this is OK
-        User original = new User( "king@kong.com", "uhahvorhemmeligt", "konge" );
+        User original = new User( "King Kong","king@kong.com", "uhahvorhemmeligt", 11111111 ,"konge" ,50);
         userMapper.createUser( original );
         User retrieved = userMapper.login( "king@kong.com", "uhahvorhemmeligt" );
         assertEquals( "konge", retrieved.getRole() );

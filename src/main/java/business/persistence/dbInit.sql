@@ -3,15 +3,17 @@
     If so, please substitute `startcode` with whatever your project is called.
  */
 
-CREATE DATABASE  IF NOT EXISTS `startcode_test`;
+CREATE DATABASE  IF NOT EXISTS `startcode`;
 
-USE `startcode_test`;
+USE `startcode`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sname` varchar(45) NOT NULL,
   `email` varchar(90) NOT NULL,
-  `name` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `phone` int(8) NOT NULL UNIQUE ,
   `role` varchar(20) NOT NULL DEFAULT 'student',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
@@ -19,8 +21,8 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 INSERT INTO `users` VALUES 
-(1,'barbie@world.dk','jensen','customer'),
-(2,'ken@world.com','jensen','customer'),
-(3,'robin@gotham.com','batman','employee');
+(1,'Barbie', 'barbie@world.dk','jensen','11111111','customer'),
+(2,'Ken', 'ken@world.com','jensen','22222222','customer'),
+(3,'Robin', 'robin@gotham.com','batman','33333333','employee');
 UNLOCK TABLES;
 

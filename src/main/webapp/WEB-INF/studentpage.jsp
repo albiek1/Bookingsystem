@@ -13,6 +13,14 @@
         <h1>Hello ${sessionScope.email} </h1>
         You are now logged in as a Customer of our wonderful site.
         Role: ${sessionScope.role}
+        <form action="${pageContext.request.contextPath}/fc/showAllItemsStu" method="post">
+            <input type="submit" class="btn btn-primary" name="new booking" value="new booking"/>
+        </form>
+        <form action="${pageContext.request.contextPath}/fc/viewStudentProfile" method="post">
+            <input type="submit" class="btn btn-primary" name="profile" value="profile"/>
+        </form>
+
+        <p>View your bookings</p>
     </jsp:body>
 
 </t:genericpage>
