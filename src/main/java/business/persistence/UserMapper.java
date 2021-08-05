@@ -1,7 +1,7 @@
 package business.persistence;
 
-import business.exceptions.UserException;
 import business.entities.User;
+import business.exceptions.UserException;
 
 import java.sql.*;
 import java.util.ArrayList;

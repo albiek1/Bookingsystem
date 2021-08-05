@@ -30,6 +30,7 @@ public class editBookingCommandAdm extends CommandProtectedPage{
         Booking booking = null;
         Date endDate;
         HttpSession session = request.getSession();
+        //set current booking
         if(request.getParameter("submit") != null){
             booking = bookingFacade.getBookingsByID(Integer.parseInt(request.getParameter("submit"))+1);
             Item item = itemFacade.getItemByID(booking.getItemID());
@@ -45,8 +46,6 @@ public class editBookingCommandAdm extends CommandProtectedPage{
             request.setAttribute("status", booking.getStatus());
             session.setAttribute("bookingID", booking.getBookingID());
         }
-
-        //set current booking
 
         //set new booking
         String newID = request.getParameter("newID");

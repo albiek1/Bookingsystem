@@ -5,8 +5,12 @@ import business.exceptions.UserException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserMapperTest {
@@ -35,13 +39,12 @@ public class UserMapperTest {
 
             // reset test database
             try ( Statement stmt = database.connect().createStatement() ) {
-                stmt.execute("drop table if exists users" );
-                stmt.execute("create table " + TESTDATABASE + ".users LIKE " + DATABASE + ".users;" );
+                stmt.execute("DELETE FROM users WHERE NOT id IS NULL" );
                 stmt.execute(
                         "insert into users values " +
-                    "(1,'Jens', 'jens@somewhere.com','jensen','11111111','student'), " +
-                    "(2,'Ken', 'ken@somewhere.com','kensen','22222222','student'), " +
-                    "(3,'Robin', 'robin@somewhere.com','batman','33333333','admin')");
+                    "(1,'Jens', 'jens@somewhere.com','jensen','11111111','student', 50), " +
+                    "(2,'Ken', 'ken@somewhere.com','kensen','22222222','student', 50), " +
+                    "(3,'Robin', 'robin@somewhere.com','batman','33333333','admin', 50)");
             } catch (SQLException ex) {
             System.out.println( "Could not open connection to database: " + ex.getMessage() );
         }
@@ -83,5 +86,14 @@ public class UserMapperTest {
         userMapper.createUser( original );
         User retrieved = userMapper.login( "king@kong.com", "uhahvorhemmeligt" );
         assertEquals( "konge", retrieved.getRole() );
+    }
+
+    @Test
+    public void unitTest(){
+        //test for adding date and length
+        Date date = Date.valueOf("2021-10-10");
+        int length = 10;
+        Date endDate = Date.valueOf(LocalDate.parse(date.toString()).plusDays (length));
+        assertEquals("2021-10-20", endDate.toString());
     }
 }

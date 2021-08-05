@@ -1,11 +1,10 @@
 package business.services;
 
 import business.entities.User;
+import business.exceptions.UserException;
 import business.persistence.Database;
 import business.persistence.UserMapper;
-import business.exceptions.UserException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserFacade
@@ -30,9 +29,7 @@ public class UserFacade
     }
 
     public List<User> getAllStudents() throws UserException {
-        List<User> students = new ArrayList<>();
-        students = userMapper.getAllStudents();
-        return students;
+        return userMapper.getAllStudents();
     }
 
     public User getStudentByID(int id) throws UserException {
